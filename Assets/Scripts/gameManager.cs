@@ -7,7 +7,12 @@ public class gameManager : MonoBehaviour
 {
     public GameObject rain;
     public static gameManager I;
+
+    public GameObject panel;
     public Text scoreText;
+    public Text timeText;
+
+    public float limit = 30;
 
     int totalScore = 0;
 
@@ -23,7 +28,14 @@ public class gameManager : MonoBehaviour
 
     void Update()
     {
-        
+        limit -= Time.deltaTime;
+        if(limit < 0)
+        {
+            limit = 0.0f;
+            panel.SetActive(true);
+            Time.timeScale = 0.0f;
+        }
+        timeText.text = limit.ToString("N2");
     }
 
     void makeRain()
