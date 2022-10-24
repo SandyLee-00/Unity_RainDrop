@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
     public GameObject rain;
+
     public static gameManager I;
 
     public GameObject panel;
@@ -24,6 +26,14 @@ public class gameManager : MonoBehaviour
     void Start()
     {
         InvokeRepeating("makeRain", 0, 0.5f);
+        initGame();
+    }
+
+    void initGame()
+    {
+        Time.timeScale = 1.0f;
+        totalScore = 0;
+        limit = 30.0f;
     }
 
     void Update()
@@ -35,7 +45,7 @@ public class gameManager : MonoBehaviour
             panel.SetActive(true);
             Time.timeScale = 0.0f;
         }
-        timeText.text = limit.ToString("N2");
+        timeText.text = limit.ToString("N0");
     }
 
     void makeRain()
@@ -48,5 +58,9 @@ public class gameManager : MonoBehaviour
         totalScore += score;
         scoreText.text = totalScore.ToString();
     }
-    
+
+    public void retry()
+    {
+        SceneManager.LoadScene("MainScene");
+    }
 }
