@@ -4,15 +4,47 @@ using UnityEngine;
 
 public class rain : MonoBehaviour
 {
-    // Start is called before the first frame update
+    int type = 0;
+    float size = 0.0f;
+    int score = 0;
+
     void Start()
+    {
+        float x = Random.Range(-2.7f, 2.7f);
+        float y = Random.Range(3.0f, 5.0f);
+        transform.position = new Vector3(x, y, 0);
+
+        type = Random.Range(1, 4);
+        if(type == 1)
+        {
+            size = 1.2f;
+            score = 3;
+            GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
+        }
+        else if (type == 2)
+        {
+            size = 1.2f;
+            score = 3;
+            GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
+        }
+        else if (type == 3)
+        {
+            size = 1.2f;
+            score = 3;
+            GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
+        }
+    }
+
+    void Update()
     {
         
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnCollisionEnter2D(Collision2D col)
     {
-        
+        if (col.gameObject.tag == "Ground")
+        {
+            Destroy(gameObject);
+        }
     }
 }
