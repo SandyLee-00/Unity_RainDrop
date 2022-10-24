@@ -21,6 +21,6 @@ public class rtan : MonoBehaviour
             
         }
         transform.localScale = new Vector3(flip, 1, 1);
-        transform.position += new Vector3(direction, 0, 0);
+        transform.position += new Vector3(direction, 0.0f, 0.0f);
     }
 }

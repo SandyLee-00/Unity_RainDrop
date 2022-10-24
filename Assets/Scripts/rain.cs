@@ -33,6 +33,7 @@ public class rain : MonoBehaviour
             score = 1;
             GetComponent<SpriteRenderer>().color = new Color(150 / 255f, 150 / 255f, 255 / 255f, 255 / 255f);
         }
+        transform.localScale = new Vector3(size, size, 0.0f);
     }
 
     void Update()
