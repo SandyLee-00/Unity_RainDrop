@@ -23,15 +23,15 @@ public class rain : MonoBehaviour
         }
         else if (type == 2)
         {
-            size = 1.2f;
-            score = 3;
-            GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
+            size = 1.0f;
+            score = 2;
+            GetComponent<SpriteRenderer>().color = new Color(130 / 255f, 130 / 255f, 255 / 255f, 255 / 255f);
         }
         else if (type == 3)
         {
-            size = 1.2f;
-            score = 3;
-            GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
+            size = 0.8f;
+            score = 1;
+            GetComponent<SpriteRenderer>().color = new Color(150 / 255f, 150 / 255f, 255 / 255f, 255 / 255f);
         }
     }
 
@@ -44,6 +44,11 @@ public class rain : MonoBehaviour
     {
         if (col.gameObject.tag == "Ground")
         {
+            Destroy(gameObject);
+        }
+        else if(col.gameObject.tag == "Player")
+        {
+            gameManager.I.addScore(score);
             Destroy(gameObject);
         }
     }
