@@ -18,7 +18,7 @@ public class rain : MonoBehaviour
         if(type == 1)
         {
             size = 1.2f;
-            score = 3;
+            score = 1;
             GetComponent<SpriteRenderer>().color = new Color(100 / 255f, 100 / 255f, 255 / 255f, 255 / 255f);
         }
         else if (type == 2)
@@ -30,7 +30,7 @@ public class rain : MonoBehaviour
         else if (type == 3)
         {
             size = 0.8f;
-            score = 1;
+            score = 3;
             GetComponent<SpriteRenderer>().color = new Color(150 / 255f, 150 / 255f, 255 / 255f, 255 / 255f);
         }
         transform.localScale = new Vector3(size, size, 0.0f);

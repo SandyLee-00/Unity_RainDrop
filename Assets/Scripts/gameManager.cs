@@ -11,12 +11,12 @@ public class gameManager : MonoBehaviour
     public static gameManager I;
 
     public GameObject panel;
+
     public Text scoreText;
     public Text timeText;
 
-    public float limit = 30;
-
     int totalScore = 0;
+    public float limit = 30.0f;
 
     private void Awake()
     {
@@ -28,14 +28,7 @@ public class gameManager : MonoBehaviour
         InvokeRepeating("makeRain", 0, 0.5f);
         initGame();
     }
-
-    void initGame()
-    {
-        Time.timeScale = 1.0f;
-        totalScore = 0;
-        limit = 30.0f;
-    }
-
+ 
     void Update()
     {
         limit -= Time.deltaTime;
@@ -46,6 +39,13 @@ public class gameManager : MonoBehaviour
             Time.timeScale = 0.0f;
         }
         timeText.text = limit.ToString("N0");
+    }
+
+    void initGame()
+    {
+        Time.timeScale = 1.0f;
+        totalScore = 0;
+        limit = 30.0f;
     }
 
     void makeRain()
