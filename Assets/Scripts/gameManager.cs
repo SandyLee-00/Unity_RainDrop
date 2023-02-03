@@ -6,61 +6,61 @@ using UnityEngine.SceneManagement;
 
 public class gameManager : MonoBehaviour
 {
-    public GameObject rain;
+  public GameObject rain;
 
-    public static gameManager I;
+  public static gameManager I;
 
-    public GameObject panel;
+  public GameObject panel;
 
-    public Text scoreText;
-    public Text timeText;
+  public Text scoreText;
+  public Text timeText;
 
-    int totalScore = 0;
-    public float limit = 30.0f;
+  int totalScore = 0;
+  public float limit = 30.0f;
 
-    private void Awake()
+  private void Awake()
+  {
+    I = this;
+  }
+
+  void Start()
+  {
+    InvokeRepeating("makeRain", 0, 0.5f);
+    initGame();
+  }
+
+  void Update()
+  {
+    limit -= Time.deltaTime;
+    if (limit < 0)
     {
-        I = this;
+      limit = 0.0f;
+      panel.SetActive(true);
+      Time.timeScale = 0.0f;
     }
+    timeText.text = limit.ToString("N0");
+  }
 
-    void Start()
-    {
-        InvokeRepeating("makeRain", 0, 0.5f);
-        initGame();
-    }
- 
-    void Update()
-    {
-        limit -= Time.deltaTime;
-        if(limit < 0)
-        {
-            limit = 0.0f;
-            panel.SetActive(true);
-            Time.timeScale = 0.0f;
-        }
-        timeText.text = limit.ToString("N0");
-    }
+  void initGame()
+  {
+    Time.timeScale = 1.0f;
+    totalScore = 0;
+    limit = 30.0f;
+  }
 
-    void initGame()
-    {
-        Time.timeScale = 1.0f;
-        totalScore = 0;
-        limit = 30.0f;
-    }
+  void makeRain()
+  {
+    Instantiate(rain);
+  }
 
-    void makeRain()
-    {
-        Instantiate(rain);
-    }
+  public void addScore(int score)
+  {
+    totalScore += score;
+    scoreText.text = totalScore.ToString();
+  }
 
-    public void addScore(int score)
-    {
-        totalScore += score;
-        scoreText.text = totalScore.ToString();
-    }
-
-    public void retry()
-    {
-        SceneManager.LoadScene("MainScene");
-    }
+  public void retry()
+  {
+    SceneManager.LoadScene("MainScene");
+  }
 }
